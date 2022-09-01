@@ -1,0 +1,40 @@
+{
+  "name": "@golden-tiger/difference",
+  "version": "0.0.1",
+  "description": "@golden-tiger/difference",
+  "main": "./lib/index.js",
+  "scripts": {
+    "build:uo": "mode=development minimize=false webpack",
+    "build": "mode=production minimize=true webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CHENGCHANGHU/difference.git"
+  },
+  "files": [
+    "dist",
+    "lib",
+    "README.md"
+  ],
+  "keywords": [],
+  "author": "Cheng ChangHu",
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "bugs": {
+    "url": "https://github.com/CHENGCHANGHU/difference/issues"
+  },
+  "homepage": "https://github.com/CHENGCHANGHU/difference#readme",
+  "devDependencies": {
+    "@babel/core": "^7.18.13",
+    "@babel/preset-env": "^7.18.10",
+    "babel-loader": "^8.2.5",
+    "clean-webpack-plugin": "^4.0.0",
+    "core-js": "^3.25.0",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-merge": "^5.8.0"
+  },
+  "dependencies": {}
+}
