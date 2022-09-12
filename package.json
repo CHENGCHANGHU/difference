@@ -1,8 +1,9 @@
 {
   "name": "@golden-tiger/difference",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "@golden-tiger/difference",
-  "main": "./lib/index.js",
+  "main": "./lib/cjs-module.js",
+  "module": "./lib/es-module.js",
   "scripts": {
     "build:uo": "mode=development minimize=false webpack",
     "build": "mode=production minimize=true webpack"

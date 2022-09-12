@@ -68,28 +68,7 @@
 }
 
 /**
- * find the difference between Object(before) and Object(after)
- * @param {*} before before value
- * @param {*} after after value
- * @param {*} option options of difference
- * @returns :routes -> route in object, :before -> before value, :after -> after value
- */
-
-/**
- * find the difference between Object(before) and Object(after)
- * @param before the before value for diff
- * @param after the after value for diff
- * @param option.routes initial routes
- * @param option.arrayInOrder If array needs keep order when contrast.
- * @param option.arraySort sort function when array keeps order
- * @param option.covers Cover array to custom specific contrast handler for specific routes.
- * Handle function's return should be an array consisted of Difference<T> or a falsy value.
- * Handle function's return will be pushed into the diff results array when it is not a falsy value.
- * @returns routes: route in object, before: before value, after: after value
- */
-
-/**
- * Difference between before value and after value
+ * Differences between before value and after value
  * @param {*} before the before value for difference
  * @param {*} after the after value for difference
  * @param {*} option.routes initial routes

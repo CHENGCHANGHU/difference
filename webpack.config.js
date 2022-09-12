@@ -6,8 +6,8 @@ const externalDependencies = [
 ];
 
 // console.log(process.argv);
-console.log('mode:', process.env.mode);
-console.log('minimize:', process.env.minimize);
+// console.log('mode:', process.env.mode);
+// console.log('minimize:', process.env.minimize);
 
 function getWebpackConfig () {
   return {
