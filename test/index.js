@@ -84,3 +84,19 @@ console.log(difference({ a: 'foo' }, { a: 'bar' }, {
   ],
 }));
 // [ { routes: [ 'a' ], before: 'foo', after: 'bar' } ]
+
+console.log(difference(new Date(), new Date()));
+// []
+console.log(difference(new Date(), new Date('2019-08-23T00:00:00.000Z')));
+// [
+//   {
+//     before: 2022-09-15T13:31:17.484Z,
+//     after: 2019-08-23T00:00:00.000Z, // The day I met my girl
+//     routes: []
+//   }
+// ]
+
+console.log(difference(/foo/, /foo/));
+// []
+console.log(difference(/foo/, /bar/));
+// [ { before: /foo/, after: /bar/, routes: [] } ]

@@ -28,6 +28,8 @@ Use `difference` function to get differences between the first parameter `before
 
 ## Examples
 
+### type
+
 1. number
 
 ```js
@@ -109,7 +111,33 @@ difference({ a: 'foo' }, { b: 'foo' });
 // ]
 ```
 
-6. `option.covers`
+6. Date
+
+```js
+difference(new Date(), new Date());
+// []
+difference(new Date(), new Date('2019-08-23T00:00:00.000Z'));
+// [
+//   {
+//     before: 2022-09-15T13:31:17.484Z,
+//     after: 2019-08-23T00:00:00.000Z, // The day I met my girl
+//     routes: []
+//   }
+// ]
+```
+
+7. RegExp
+
+```js
+difference(/foo/, /foo/);
+// []
+difference(/foo/, /bar/);
+// [ { before: /foo/, after: /bar/, routes: [] } ]
+```
+
+### option
+
+1. `option.covers`
 
   > `handler` function's falsy return will be ignore in difference result. Using `handler` function you can custom the difference result, such as ignoring some specific route value or combining several route values to one difference item.
 
