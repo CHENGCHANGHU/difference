@@ -6,7 +6,71 @@
  * @param {*} option options of difference
  * @returns 
  */
- function differenceTR(stack, differences, option) {
+function _differenceTR(stack, differences, option) {
+  if (!stack.length) return differences;
+  const _stack = [];
+  for (const { before, after, routes } of stack ) {
+    if (option.covers.length) {
+      const cover = option.covers.find(({ routes: r }) => difference(r, routes).length === 0);
+      if (cover && cover.handler) {
+        const specifiedDifferences = cover.handler(before, after, routes);
+        if (specifiedDifferences) {
+          differences.push(...specifiedDifferences);
+        }
+        continue;
+      } else if (cover) {
+        if (difference(before, after).length) {
+          differences.push({ before, after, routes });
+        }
+        continue;
+      }
+    }
+  
+    const beforeType = typeof before;
+    const afterType = typeof after;
+    if (beforeType === 'object' && afterType === 'object' && before && after) {
+      // object type
+      if (Array.isArray(before) && Array.isArray(after) && !option.arrayInOrder) {
+        const sortedBefore = [...before].sort(option.arraySort) || [];
+        const sortedAfter = [...after].sort(option.arraySort) || [];
+        _stack.push(...Array
+          .from(new Set([...Object.keys(sortedBefore), ...Object.keys(sortedAfter)]))
+          .map(key => ({
+            routes: [...routes, key],
+            before: sortedBefore[key],
+            after: sortedAfter[key],
+          })));
+      } else {
+        if ((before instanceof Date && after instanceof Date
+            || before instanceof RegExp && after instanceof RegExp)
+          && before.toString() !== after.toString()
+        ) {
+          differences.push({ before, after, routes });
+        }
+        _stack.push(...Array.from(new Set([...Object.keys(before), ...Object.keys(after)]))
+          .map(key => ({
+            routes: [...routes, key],
+            before: before[key],
+            after: after[key],
+          })));
+      }
+    } else if (before !== after) {
+      // basic type
+      differences.push({ routes, before, after });
+    }
+  }
+  
+  return _differenceTR(_stack, differences, option);
+}
+
+/**
+ * tail recursive function of difference
+ * @param {*} stack stack to difference
+ * @param {*} differences result differences accumulator
+ * @param {*} option options of difference
+ * @returns 
+ */
+function differenceTR(stack, differences, option) {
   if (!stack.length) return differences;
   const { before, after, routes } = stack.pop();
   
@@ -90,7 +154,7 @@ export function difference(
     covers: []
   }
 ) {
-  return differenceTR(
+  return _differenceTR(
     [{ before, after, routes: option.routes || [] }],
     [],
     {

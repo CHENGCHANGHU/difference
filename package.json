@@ -1,6 +1,6 @@
 {
   "name": "@golden-tiger/difference",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "@golden-tiger/difference",
   "main": "./lib/cjs-module.js",
   "module": "./lib/es-module.js",
