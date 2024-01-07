@@ -1,12 +1,15 @@
 {
   "name": "@golden-tiger/difference",
-  "version": "0.0.8",
+  "version": "0.0.12",
   "description": "@golden-tiger/difference",
   "main": "./lib/cjs-module.js",
   "module": "./lib/es-module.js",
   "scripts": {
-    "build:uo": "mode=development minimize=false webpack",
-    "build": "mode=production minimize=true webpack"
+    "dev:mac": "mode=development minimize=false webpack --config webpack.config.js --env development --env minimize=false",
+    "build:mac": "mode=production minimize=true webpack --config webpack.config.js --env production --env minimize",
+    "dev:windows": "set mode=development&&set minimize=false&&webpack --config webpack.config.js --env development --env minimize=false",
+    "build:windows": "set mode=production&&set minimize=true&&webpack --config webpack.config.js --env production --env minimize",
+    "publish:patch": "node ./publish-helper.mjs"
   },
   "repository": {
     "type": "git",
